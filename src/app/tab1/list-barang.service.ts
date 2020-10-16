@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ListBarangService {
-private dt:dt[]=[
+private dt:Dt[]=[
        {
         id:'br1',
         foto:'https://tweakers.net/i/6mFqDEsyG7j6arsjLSC4e6re2ZI=/i/2000645311.jpeg',
