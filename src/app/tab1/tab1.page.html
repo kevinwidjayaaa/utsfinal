@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content *ngIf="Toggle">
-    <div *ngFor="let dt of DT">
+    <div *ngFor="let DT of DT">
         <ion-card *ngIf="DT.stok > 0" [routerLink]="['./',DT.id]">
             <ion-card-content>
                 <ion-list>
