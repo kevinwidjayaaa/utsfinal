@@ -1,17 +1,59 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="end" (click)="toggleBtn()">
+            <ion-button>
+                <ion-icon name="grid" slot="end" [name]="Toggle ? 'grid' : 'list'"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Home</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="Toggle">
+    <div *ngFor="let dt of DT">
+        <ion-card *ngIf="DT.stok > 0" [routerLink]="['./',DT.id]">
+            <ion-card-content>
+                <ion-list>
+                    <ion-item lines="none">
+                        <ion-thumbnail slot="start">
+                            <ion-img [src]="DT.foto"></ion-img>
+                        </ion-thumbnail>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-label>{{DT.merek}} {{DT.speed}}</ion-label>
+                            </ion-row>
+                            <ion-row>
+                                <ion-label>{{DT.harga }}</ion-label>
+                            </ion-row>
+                            <ion-row>
+                                <ion-label>Stock : {{DT.stok}}</ion-label>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    </div>
+</ion-content>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-content *ngIf="!Toggle" class="ion-padding-top">
+    <ion-grid>
+        <ion-row class="ion-justify-content-around">
+            <ng-container *ngFor="let product of products">
+                <ion-col size="5" ion-item lines="none" *ngIf="DT.stock != 0" [routerLink]="['./',DT.id]" style="box-shadow: 0 0 2px 2px #828282; border-radius: 8px; margin-bottom: 20px;">
+                    <ion-thumbnail class="ion-align-self-center" style="margin: auto; width: 100px; height: 100px;">
+                        <ion-img [src]="DT.foto"></ion-img>
+                    </ion-thumbnail>
+                    <div style="padding-top: 10px; padding-right: 10px; padding-left: 10px;">
+                        <ion-label>{{DT.merek}} {{DT.harga}}</ion-label><br>
+                        
+                        <ion-label>Stock : {{DT.stok}}</ion-label><br>
+                    </div>
+                </ion-col>
+            </ng-container>
+        </ion-row>
+    </ion-grid>
 </ion-content>
